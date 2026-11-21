@@ -1,0 +1,33 @@
+id = "temet.taste"
+name = "taste"
+version = "0.1.0"
+min_ask_kit = "0.2.0"
+says = "what the user has recorded as rejected and accepted in written and visual work, from their taste or style file, each verdict with their quoted words, the date and the section: what they said about titles, headings, taglines, colours, glyphs and pills, tables as layout, motion and video clips, logos, density, claims and numbers, guides; which of the recorded verdicts a plan, a draft text or an HTML, CSS or SVG file runs into before it is shown; what has been accepted; what to settle before polishing; whether a verdict exists at all (the answer is then 'nothing recorded'); and recording a new verdict from the person's own words"
+keywords = ["taste", "style guide", "taste file", "would (they|i|she|he) (reject|accept|like|hate)", "(rejects?|accepts?|hates?|likes?) (titles?|teal|glyphs?|pills?|chevrons?)", "before (showing|it is shown|publishing)", "ai slop titles?", "colou?r ?blind\\w*", "red-green", "quality[- ]review", "recorded verdicts?", "visual taste", "what (has|did) (they|i|she|he) (say|said|reject|accept)"]
+route_hint = "the recorded verdicts on written and visual work in a taste or style file (what the person rejects or accepts, in their words, and checking a plan or a draft against them) are taste; the sentence-level prose lint and rewriting are writing; standing rules in CLAUDE.md, rules files and memory are rules; what was typed in a past session is sessions or mike; how a page renders or looks is browser, and the taste kit does not look at images"
+cite = "`path:line` of the verdict in the taste file, with its date and the quoted words"
+instructions = "instructions.md"
+acts = ["taste.add (appends a verdict to the taste file)"]
+
+[[settings]]
+key = "TASTE_FILE"
+about = "the taste or style file to read: a Markdown file of what you reject and accept in written and visual work, with your own words and dates, in sections such as 'What I reject' and 'The shape of the work'"
+required = true
+
+[[sources]]
+kind = "module"
+name = "taste"
+module = "taste.mjs"
+api = "api.d.ts"
+
+[[roles]]
+name = "taste-checker"
+when = "a request to check a plan, a described piece of work, a draft or a design file against what the taste file records, before it is shown, or to say what the file says about a subject"
+patterns = ["\\b(check|review|vet|would (they|he|she|i) (reject|accept|like))\\b.*\\b(against|taste|before (showing|it is shown))\\b", "\\bwhat (has|did) (they|he|she|i) (say|said|reject|accept)\\w*\\b", "\\b(taste|verdicts?)\\b"]
+instructions = "roles/taste-checker.md"
+
+[[roles]]
+name = "stand-in"
+when = "a question a session would otherwise put to the person about a written or visual preference, answered only from what is recorded"
+patterns = ["^(would|does|did|is|are) (they|he|she)\\b.*\\b(accept|reject|like|want|mind|hate)\\b", "\\bwhat would (they|he|she) (say|think|want)\\b"]
+instructions = "roles/stand-in.md"

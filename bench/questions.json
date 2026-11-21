@@ -1,0 +1,13 @@
+{
+  "about": "Kinds of question agents put to a reviewer or stand-in agent about a taste file: what the file says on a subject, whether a piece of work would run into a verdict, and what is not recorded. Run against the invented fixture: TASTE_FILE=bench/fixture/taste.md ask-kit kit test taste. Expectations were checked against the fixture. Not yet run on a model.",
+  "questions": [
+    { "id": "teal", "q": "What has the taste file recorded about teal? Give the words and the date.", "expect": ["no teal anywhere near the masthead", "2026-11-10"] },
+    { "id": "titles", "q": "What has the file recorded about the titles of posts? Quote it.", "expect": ["ai sloppy", "2026-11-07"] },
+    { "id": "diamonds", "q": "Would a ◆ be accepted as an output marker in a terminal clip? What is recorded about diamond glyphs?", "expect": ["diamond thingies", "kind of meh"] },
+    { "id": "colour-blind", "q": "I am about to colour a chart green for pass and orange-red for fail. What is recorded that applies?", "expect": ["red green colour blindness", "2026-11-11", "shape, position, weight or text"] },
+    { "id": "video-clip", "q": "A session wants a video to show a result. What does the file say about clips like that?", "expect": ["we dont need a video of the bees", "honey figures", "2026-11-15"] },
+    { "id": "nothing-recorded", "q": "What has the file recorded about podcasts?", "expect": ["nothing recorded"] },
+    { "id": "check-text-shot", "do": "check-text", "params": { "text": "# Four ways to ask\n\nIt is not a search tool, it is a thinking partner. One program does what would otherwise be a dozen tool calls." }, "expect": ["count-title", "not-a-its-b", "would-otherwise"] },
+    { "id": "about-shot", "do": "about", "params": { "subject": "teal" }, "expect": ["\"found\": true", "no teal anywhere"] }
+  ]
+}
